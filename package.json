@@ -1,0 +1,15 @@
+{
+  "name": "imageshrink",
+  "version": "1.0.0",
+  "description": "Shrinking Images!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --exec electron ."
+  },
+  "author": "Anshuman Pandey",
+  "devDependencies": {
+    "electron": "^10.1.0",
+    "nodemon": "^2.0.4"
+  }
+}
