@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
+const { app, BrowserWindow, Menu, globalShortcut, ipcMain } = require('electron');
 
 process.env.NODE_ENV = 'development';
 
@@ -22,13 +22,17 @@ let mainWindow;
 //  INITIALIZING THE ABOUT WINDOW: 
 let aboutWindow;
 
+let imagePath;
+let quality;
+
 const createMainWindow = () => {
     mainWindow = new BrowserWindow({
         title: 'ImageShrinker',
         width: 500,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         },
         resizable: isDev ? true : false,
         backgroundColor: 'white'
@@ -114,6 +118,11 @@ const menu = [
 
 ]
 
+
+ipcMain.on('channel1', (e, args) => {
+    imagePath = args.filePath;
+    quality = args.quality;
+})
 
 app.on('ready', () => {
     createMainWindow();

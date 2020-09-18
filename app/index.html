@@ -9,7 +9,26 @@
 </head>
 
 <body>
-    <h1 style="color:red;" >Hello World!</h1>
+    <h1>ImageShrinker</h1>
+
+    <div id="input-box">
+        <button id="browse-button"> Browse </button>
+
+        <input type="range" id="quality-slider" min="0" max="100">
+
+        <button id="resize-button" disabled > Resize </button>
+    </div>
+
+
+    <div id="output-path">
+        <p>
+            Output Path:
+        </p>
+        <p id="output-path-text"></p>
+    </div>
+
+    <script src="../renderer.js"></script>
+
 </body>
 
 </html>
