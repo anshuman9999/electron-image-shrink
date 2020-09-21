@@ -27,6 +27,7 @@ browseButton.addEventListener('click', async () => {
             filePath: result.filePaths[0],
             quality: result.quality
         })
+        //ResizeButton.disabled = true;
     })
 })
 

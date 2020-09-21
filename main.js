@@ -1,4 +1,8 @@
-const { app, BrowserWindow, Menu, globalShortcut, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, globalShortcut, ipcMain, shell } = require('electron');
+const imagemin = require('imagemin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const slash = require('slash');
 
 process.env.NODE_ENV = 'development';
 
@@ -46,7 +50,6 @@ const createMainWindow = () => {
 
 
 }
-
 
 const createAboutWindow = () => {
     aboutWindow = new BrowserWindow({
@@ -120,9 +123,37 @@ const menu = [
 
 
 ipcMain.on('channel1', (e, args) => {
-    imagePath = args.filePath;
-    quality = args.quality;
+    args.imageDestination = `${app.getPath('home')}\\imageShrinker`;
+    args.quality = parseInt(args.quality)
+    shrinkImage(e, args)
 })
+
+const shrinkImage = async (e, args) => {
+    try {
+        const pngQuality = args.quality / 100;
+        let files = await imagemin([slash(args.filePath)], {
+            destination: slash(args.imageDestination),
+            plugins: [
+                imageminMozjpeg({ quality: args.quality }),
+                imageminPngquant({
+                    quality: [pngQuality, pngQuality] 
+                })
+            ]
+        });
+
+        // console.log(args);
+        //console.log(files);
+
+        mainWindow.reload();
+
+        shell.openPath(args.imageDestination);
+
+        return;
+
+    } catch(err) {
+        console.log(err);
+    }
+}
 
 app.on('ready', () => {
     createMainWindow();
