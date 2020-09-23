@@ -54,7 +54,7 @@ const createMainWindow = () => {
 const createAboutWindow = () => {
     aboutWindow = new BrowserWindow({
         title: 'About ImageShrinker',
-        width: 300,
+        width: 250,
         height: 300,
         webPreferences: {
             nodeIntegration: true
@@ -121,11 +121,12 @@ const menu = [
 
 ]
 
-
 ipcMain.on('channel1', (e, args) => {
     args.imageDestination = `${app.getPath('home')}\\imageShrinker`;
     args.quality = parseInt(args.quality)
-    shrinkImage(e, args)
+    //console.log(args);
+    shrinkImage(e, args);
+    //e.sender.send('channel1', 'Image Resized!')
 })
 
 const shrinkImage = async (e, args) => {
@@ -148,7 +149,7 @@ const shrinkImage = async (e, args) => {
 
         shell.openPath(args.imageDestination);
 
-        return;
+        //return;
 
     } catch(err) {
         console.log(err);

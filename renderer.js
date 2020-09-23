@@ -1,24 +1,25 @@
-const { remote, ipcRenderer } = require('electron');
+const { remote, ipcRenderer, shell } = require('electron');
 const { dialog, app } = remote;
-
 const browseButton = document.getElementById('browse-button');
 const ResizeButton = document.getElementById('resize-button');
 const qualitySlider = document.getElementById('quality-slider');
 
 
 browseButton.addEventListener('click', async () => {
-    const result =  await dialog.showOpenDialog({
+    const result = await dialog.showOpenDialog({
         title: 'browse for an image',
         defaultPath: app.getPath('pictures'),
         filters: [
-            { name: 'Images', extensions: [ 'jpg', 'png' ] }
+            { name: 'Images', extensions: ['jpg', 'png'] }
         ]
     })
 
-    if(result.canceled) {
+
+    if (result.canceled) {
         ResizeButton.disabled = true;
     } else {
         ResizeButton.disabled = false;
+        document.getElementById('input-path-para').innerText = result.filePaths[0];
     }
 
     ResizeButton.addEventListener('click', () => {
@@ -27,11 +28,8 @@ browseButton.addEventListener('click', async () => {
             filePath: result.filePaths[0],
             quality: result.quality
         })
-        //ResizeButton.disabled = true;
+        ResizeButton.disabled = true;
     })
+
+
 })
-
-
-// ResizeButton.addEventListener('click', () => {
-//     qualitySlider
-// })
