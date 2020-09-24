@@ -3,7 +3,7 @@ const { dialog, app } = remote;
 const browseButton = document.getElementById('browse-button');
 const ResizeButton = document.getElementById('resize-button');
 const qualitySlider = document.getElementById('quality-slider');
-
+const tester = document.getElementById('testing-div');
 
 browseButton.addEventListener('click', async () => {
     const result = await dialog.showOpenDialog({
@@ -14,7 +14,6 @@ browseButton.addEventListener('click', async () => {
         ]
     })
 
-
     if (result.canceled) {
         ResizeButton.disabled = true;
     } else {
@@ -22,14 +21,14 @@ browseButton.addEventListener('click', async () => {
         document.getElementById('input-path-para').innerText = result.filePaths[0];
     }
 
-    ResizeButton.addEventListener('click', () => {
-        result.quality = qualitySlider.value;
-        ipcRenderer.send('channel1', {
-            filePath: result.filePaths[0],
-            quality: result.quality
-        })
-        ResizeButton.disabled = true;
-    })
+})
 
+
+ResizeButton.addEventListener('click', () => {
+    ipcRenderer.send('channel1', {
+        filePath: document.getElementById('input-path-para').innerText,
+        quality: qualitySlider.value
+    })
+    ResizeButton.disabled = true;
 
 })

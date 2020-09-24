@@ -5,31 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' ">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>ImageShrinker</title>
 </head>
 
 <body>
-    <h1 id="main-heading" >ImageShrinker</h1>
+    <h1 id="main-heading">ImageShrinker</h1>
 
-    <div id="input-box">
+    <div id="input-form-div" >
         <button id="browse-button"> Browse </button>
 
         <div id="input-path-box">
             <i class="fas fa-image image-icon"></i>
-            <p id="input-path-para" ></p>
+            <p id="input-path-para"></p>
         </div>
 
-        <input type="number" name="quality-input" id="quality-slider" value="50" >
+        <input type="number" name="quality-input" id="quality-slider" value="50">
 
-        <div id="quality-value" ></div>
+        <div id="quality-value"></div>
 
-        <button id="resize-button" disabled > Resize </button>
+        <div id="testing-div" style="display: none;"></div>
+
+        <button type="submit" id="resize-button" disabled> Resize </button>
     </div>
-
 
     <div id="output-path">
         <p>

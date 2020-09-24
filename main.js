@@ -123,10 +123,9 @@ const menu = [
 
 ipcMain.on('channel1', (e, args) => {
     args.imageDestination = `${app.getPath('home')}\\imageShrinker`;
-    args.quality = parseInt(args.quality)
+    args.quality = parseInt(args.quality);
     //console.log(args);
     shrinkImage(e, args);
-    //e.sender.send('channel1', 'Image Resized!')
 })
 
 const shrinkImage = async (e, args) => {
@@ -142,14 +141,9 @@ const shrinkImage = async (e, args) => {
             ]
         });
 
-        // console.log(args);
-        //console.log(files);
-
         mainWindow.reload();
 
-        shell.openPath(args.imageDestination);
-
-        //return;
+        shell.openPath(args.imageDestination)
 
     } catch(err) {
         console.log(err);
