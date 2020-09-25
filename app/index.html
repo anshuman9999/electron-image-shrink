@@ -11,39 +11,42 @@
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>ImageShrinker</title>
 </head>
 
 <body>
-    <h1 id="main-heading">ImageShrinker</h1>
+    <div id="main" >
+        <h1 id="main-heading">ImageShrinker</h1>
+        <div id="input-form-div">
+            <button id="browse-button"> Browse </button>
 
-    <div id="input-form-div" >
-        <button id="browse-button"> Browse </button>
+            <div id="input-path-box">
+                <i class="fas fa-image image-icon"></i>
+                <p id="input-path-para"></p>
+            </div>
 
-        <div id="input-path-box">
-            <i class="fas fa-image image-icon"></i>
-            <p id="input-path-para"></p>
+            <div id="quality-container" >
+                <p class="quality-para"> Set Quality (%) </p>
+                <input type="number" name="quality-input" id="quality-slider" value="50">
+            </div>
+
+            <button type="submit" id="resize-button" disabled> Resize </button>
         </div>
 
-        <input type="number" name="quality-input" id="quality-slider" value="50">
+        <div id="output-path">
+            <p id="output-path-para" >
+                Output Folder: 
+            </p>
+            <p id="output-path-text">
+                
+            </p>
+        </div>
 
-        <div id="quality-value"></div>
+        <script src="../renderer.js"></script>
 
-        <div id="testing-div" style="display: none;"></div>
-
-        <button type="submit" id="resize-button" disabled> Resize </button>
     </div>
-
-    <div id="output-path">
-        <p>
-            Output Path:
-        </p>
-        <p id="output-path-text"></p>
-    </div>
-
-    <script src="../renderer.js"></script>
-
 </body>
 
 </html>

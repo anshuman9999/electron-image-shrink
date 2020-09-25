@@ -6,8 +6,6 @@ const slash = require('slash');
 
 process.env.NODE_ENV = 'development';
 
-// VARIABLE IS DEVELOPMENT MODE ON: 
-
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
 // CHECK FOR PLATFORM: 
@@ -23,7 +21,6 @@ const isMac = process.platform === 'darwin' ? true : false;
 const isLinux = process.platform === 'linux' ? true : false;
 
 let mainWindow;
-//  INITIALIZING THE ABOUT WINDOW: 
 let aboutWindow;
 
 let imagePath;
@@ -42,10 +39,6 @@ const createMainWindow = () => {
         backgroundColor: 'white'
     })
 
-    //  Load a file with the file protocol
-    //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
-
-    // LOAD A FILE WITH LOADFILE:
     mainWindow.loadFile('./app/index.html');
 
 
@@ -63,44 +56,10 @@ const createAboutWindow = () => {
         backgroundColor: 'white'
     })
 
-    //  Load a file with the file protocol
-    //aboutWindow.loadURL(`file://${__dirname}/app/index.html`);
-
-    // LOAD A FILE WITH LOADFILE:
     aboutWindow.loadFile('./app/about.html');
 
 }
 
-//  In the menu: 
-
-//  ACCELERATOR IS FOR SHORTCUTS
-//  CLICK IS SELF EXPLAINATORY
-//  AND THE ROLE IS FOR MAC OS PROBLEM THAT IT DOES NOT SHOW FILE.
-
-// const menu = [
-//     ...(isMac ? [
-//         {
-//             role: 'appMenu'
-//         }
-//     ] : []),
-//     {
-//         label: 'File',
-//         submenu: [
-//             {
-//                 label: 'Test',
-//                 //accelerator: isMac ? 'Command+W' : 'Ctrl+W',
-//                 // CAN ALSO BE DONE LIKE THIS: 
-//                 accelerator: 'CmdOrCtrl+W',
-//                 click: () => console.log('Test Passed!')
-//             },
-
-//             {
-//                 label: 'Quit',
-//                 click: () => app.quit()
-//             }
-//         ]
-//     }
-// ];
 
 const menu = [
     ...(isMac ? [{ role: 'appMenu' }] : []),
@@ -121,6 +80,10 @@ const menu = [
 
 ]
 
+ipcMain.on('outputFolderClicked', (e, args) => {
+    shell.openPath(args);
+})
+
 ipcMain.on('openImageExternally', (e, args) => {
     shell.openPath(args);
 })
@@ -128,7 +91,7 @@ ipcMain.on('openImageExternally', (e, args) => {
 ipcMain.on('channel1', (e, args) => {
     args.imageDestination = `${app.getPath('home')}\\imageShrinker`;
     args.quality = parseInt(args.quality);
-    //console.log(args);
+    e.reply('ResizingImage', 'Processing...')
     shrinkImage(e, args);
 })
 
@@ -146,6 +109,8 @@ const shrinkImage = async (e, args) => {
         });
 
         const imageDest = files[0].destinationPath;
+
+        e.reply('imageResized', imageDest);
 
         mainWindow.reload();
 

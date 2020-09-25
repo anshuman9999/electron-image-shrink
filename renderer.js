@@ -4,6 +4,12 @@ const browseButton = document.getElementById('browse-button');
 const ResizeButton = document.getElementById('resize-button');
 const qualitySlider = document.getElementById('quality-slider');
 const inputPathPara = document.getElementById('input-path-para');
+const outputFolder = document.getElementById('output-path-text');
+
+outputFolder.innerText = `${app.getPath('home')}\\imageShrinker`;
+outputFolder.addEventListener('click', () => {
+    ipcRenderer.send('outputFolderClicked', outputFolder.innerText);
+});
 
 browseButton.addEventListener('click', async () => {
     const result = await dialog.showOpenDialog({
@@ -32,7 +38,15 @@ ResizeButton.addEventListener('click', () => {
 })
 
 inputPathPara.addEventListener('click', () => {
-    //shell.openPath(inputPathPara.innerText);
     ipcRenderer.send('openImageExternally', inputPathPara.innerText);
+})
 
+ipcRenderer.on('ResizingImage', (e, args) => {
+    document.body.style.opacity = 0.6;
+    document.getElementById('main').classList.add('spinner');
+    document.getElementById('main').style.pointerEvents = 'none'
+})
+
+ipcRenderer.on('imageResized', (e, args) => {
+    console.log(args);
 })
