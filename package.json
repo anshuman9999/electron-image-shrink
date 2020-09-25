@@ -5,11 +5,13 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dev": "nodemon --exec electron ."
+    "dev": "nodemon --exec electron .",
+    "package-win": "electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=false --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ImageShrinker\""
   },
   "author": "Anshuman Pandey",
   "devDependencies": {
     "electron": "^10.1.0",
+    "electron-packager": "^15.1.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
