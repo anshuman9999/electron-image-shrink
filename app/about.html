@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./about.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>About Page</h1>
+    <h1 id="about-heading-main"> About ImageShrinker </h1>
+    <p id="about-desc-para">
+        ImageShrinker is a simple tool to shrink images. Although there are countless number of websites that do just
+        this,
+        having an offline tool for the purpose of shrinking images makes things a bit easier. Also, the images that you
+        resize won't be uploaded on a server so this app is a much faster alternative.
+    </p>
+
+    <h2 id="for-developers-heading"> For Developers </h2>
+    <p id="for-developers-para">
+        If you are a developer, you can unlock a hidden developer's menu that lets you toggle the developer's tools and
+        do other cool stuff.
+        To do this, get the project's code from <a id="code-link" href="#" > here </a> and in main.js, set the development
+        environment to development by setting process.env.NODE_ENV to development.
+    </p>
+
+    <h2 id="some-useful-links-heading" > Some Useful Links </h2>
+    <div id="links">
+        <a href="#" class="code-link-github" > Full Application Code </a>
+        <a href="#" class="github-link" > Developer's github </a>
+        <a href="#" class='linkedin-link' > Developer's linkedin </a>
+    </div>
+
+    <script>
+        const { shell } = require('electron');
+        document.getElementById('code-link').addEventListener('click', () => {
+            shell.openExternal('https://github.com/anshuman9999/electron-image-shrink');
+        })
+        document.querySelector('.code-link-github').addEventListener('click', () => {
+            shell.openExternal('https://github.com/anshuman9999/electron-image-shrink');
+        })
+        document.querySelector('.github-link').addEventListener('click', () => {
+            shell.openExternal('https://github.com/anshuman9999');
+        })
+        document.querySelector('.linkedin-link').addEventListener('click', () => {
+            shell.openExternal('https://www.linkedin.com/in/anshuman-pandey-aa293b14a/');
+        })
+        
+    </script>
+
 </body>
+
 </html>

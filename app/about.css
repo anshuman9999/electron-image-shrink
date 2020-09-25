@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#about-heading-main {
+    text-align:center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin: 20px 0;
+}
+
+#about-desc-para {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px; 
+}
+
+#for-developers-heading {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#for-developers-para {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+
+#code-link {
+    color: red;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#some-useful-links-heading {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#links {
+    display: flex;
+    flex-direction: column;
+}
+
+#links > a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: red;
+}

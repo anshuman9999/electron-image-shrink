@@ -6,7 +6,7 @@ const slash = require('slash');
 
 process.env.NODE_ENV = 'development';
 
-const isDev = process.env.NODE_ENV === 'development' ? true : false;
+const isDev = process.env.NODE_ENV === 'production' ? true : false;
 
 // CHECK FOR PLATFORM: 
 
@@ -47,8 +47,8 @@ const createMainWindow = () => {
 const createAboutWindow = () => {
     aboutWindow = new BrowserWindow({
         title: 'About ImageShrinker',
-        width: 250,
-        height: 300,
+        width: 400,
+        height: 500,
         webPreferences: {
             nodeIntegration: true
         },
@@ -58,13 +58,25 @@ const createAboutWindow = () => {
 
     aboutWindow.loadFile('./app/about.html');
 
-}
+    const aboutMenu = [
+        { 
+            label: 'File', 
+            submenu:[
+                { 
+                    label: 'Exit', click: () => aboutWindow.destroy() 
+                }
+            ]
+        }
+    ];
 
+    const menu = Menu.buildFromTemplate(aboutMenu);
+    aboutWindow.setMenu(menu);
+
+}
 
 const menu = [
     ...(isMac ? [{ role: 'appMenu' }] : []),
     { role: 'fileMenu' },
-    { role: 'viewMenu' },
     ...(isDev ? [
         {
             label: 'Developer Opions',
@@ -72,11 +84,11 @@ const menu = [
                 { role: 'reload' },
                 { role: 'forcereload' },
                 { type: 'separator' },
-                { role: 'toggledevtools' },
-                { label: 'about', click: () => { createAboutWindow() } }
+                { role: 'toggledevtools' }
             ]
         }
     ] : []),
+    { label: 'About', click: () => { createAboutWindow() } }
 
 ]
 
@@ -130,7 +142,7 @@ app.on('ready', () => {
 
     //  REGISTERING A GLOBAL SHORTCUT FOR RELOAD WHEN MY WINDOW IS READY:
     globalShortcut.register('CmdOrCtrl+R', () => mainWindow.reload());
-    globalShortcut.register(isMac ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', () => mainWindow.toggleDevTools());
+    isDev ?  globalShortcut.register(isMac ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', () => mainWindow.toggleDevTools()) : null;
 
     //  SETTING THE MAINWINDOW AS NULL WHEN MY MAINWINDOW IS READY:
     mainWindow.on('ready', () => mainWindow = null);
