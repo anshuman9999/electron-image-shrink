@@ -141,9 +141,12 @@ const shrinkImage = async (e, args) => {
             ]
         });
 
+        const imageDest = files[0].destinationPath;
+
         mainWindow.reload();
 
-        shell.openPath(args.imageDestination)
+        shell.showItemInFolder(imageDest);
+        //shell.openPath(args.imageDestination)
 
     } catch(err) {
         console.log(err);
