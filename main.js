@@ -88,7 +88,7 @@ const menu = [
             ]
         }
     ] : []),
-    { label: 'About', click: () => { createAboutWindow() } }
+    { label: 'About', submenu: [{ label: 'About ImageShrinker', click: () => { createAboutWindow() } }] }
 
 ]
 
@@ -141,7 +141,7 @@ app.on('ready', () => {
     Menu.setApplicationMenu(mainMenu);
 
     //  REGISTERING A GLOBAL SHORTCUT FOR RELOAD WHEN MY WINDOW IS READY:
-    globalShortcut.register('CmdOrCtrl+R', () => mainWindow.reload());
+    isDev ? globalShortcut.register('CmdOrCtrl+R', () => mainWindow.reload()) : null;
     isDev ?  globalShortcut.register(isMac ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', () => mainWindow.toggleDevTools()) : null;
 
     //  SETTING THE MAINWINDOW AS NULL WHEN MY MAINWINDOW IS READY:
