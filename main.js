@@ -121,6 +121,10 @@ const menu = [
 
 ]
 
+ipcMain.on('openImageExternally', (e, args) => {
+    shell.openPath(args);
+})
+
 ipcMain.on('channel1', (e, args) => {
     args.imageDestination = `${app.getPath('home')}\\imageShrinker`;
     args.quality = parseInt(args.quality);

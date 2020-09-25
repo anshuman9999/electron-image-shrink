@@ -32,5 +32,7 @@ ResizeButton.addEventListener('click', () => {
 })
 
 inputPathPara.addEventListener('click', () => {
-    shell.openPath(inputPathPara.innerText);
+    //shell.openPath(inputPathPara.innerText);
+    ipcRenderer.send('openImageExternally', inputPathPara.innerText);
+
 })
