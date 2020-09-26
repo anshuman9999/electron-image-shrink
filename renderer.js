@@ -1,10 +1,13 @@
 const { remote, ipcRenderer, shell } = require('electron');
 const { dialog, app } = remote;
+const fs = require('fs');
+
 const browseButton = document.getElementById('browse-button');
 const ResizeButton = document.getElementById('resize-button');
 const qualitySlider = document.getElementById('quality-slider');
 const inputPathPara = document.getElementById('input-path-para');
 const outputFolder = document.getElementById('output-path-text');
+const fileSizePara = document.getElementById('file-size-para');
 
 outputFolder.innerText = `${app.getPath('home')}\\imageShrinker`;
 outputFolder.addEventListener('click', () => {
@@ -25,6 +28,8 @@ browseButton.addEventListener('click', async () => {
     } else {
         ResizeButton.disabled = false;
         document.getElementById('input-path-para').innerText = result.filePaths[0];
+        const fileSize = fs.statSync(result.filePaths[0]).size / 1000;
+        fileSizePara.innerText = `Size: ${ fileSize } KB`;
     }
 
 })

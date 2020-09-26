@@ -6,7 +6,7 @@ const slash = require('slash');
 
 process.env.NODE_ENV = 'development';
 
-const isDev = process.env.NODE_ENV === 'production' ? true : false;
+const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
 // CHECK FOR PLATFORM: 
 
