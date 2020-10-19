@@ -40,8 +40,6 @@ const createMainWindow = () => {
     })
 
     mainWindow.loadFile('./app/index.html');
-
-
 }
 
 const createAboutWindow = () => {
