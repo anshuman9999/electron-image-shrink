@@ -4,7 +4,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const slash = require('slash');
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
@@ -124,7 +124,8 @@ const shrinkImage = async (e, args) => {
 
         mainWindow.reload();
 
-        shell.showItemInFolder(imageDest);
+        shell.showItemInFolder(imageDest)
+
         //shell.openPath(args.imageDestination)
 
     } catch(err) {

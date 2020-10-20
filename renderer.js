@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const mainHeading = document.getElementById('main-heading');
 const browseButton = document.getElementById('browse-button');
-const ResizeButton = document.getElementById('resize-button');
+const ResizeButton = document.querySelector('.resize-button');
 const qualitySlider = document.getElementById('quality-slider');
 const inputPathPara = document.getElementById('input-path-para');
 const outputFolder = document.getElementById('output-path-text');
@@ -52,13 +52,17 @@ inputPathPara.addEventListener('click', () => {
 
 ipcRenderer.on('ResizingImage', (e, args) => {
     document.body.style.opacity = 0.6;
-    document.getElementById('main').classList.add('spinner');
+    darkMode = localStorage.getItem('darkMode');
+
+    if(darkMode === 'enabled') {
+        document.getElementById('main').classList.add('light-spinner');
+    } else {
+        document.getElementById('main').classList.add('spinner');
+    }
+    
     document.getElementById('main').style.pointerEvents = 'none'
 })
 
-ipcRenderer.on('imageResized', (e, args) => {
-    console.log(args);
-})
 
 if(darkMode === 'enabled') {
     document.body.classList.add('dark-mode');
@@ -68,14 +72,13 @@ if(darkMode === 'enabled') {
     ResizeButton.classList.add('demo');
     modeToggle.classList.remove('fa-moon');
     modeToggle.classList.add('fa-sun');
-
 }
 
 const enableDarkMode = () => {
     document.body.classList.add('dark-mode');
     localStorage.setItem('darkMode', 'enabled');
     browseButton.style.backgroundColor = 'hotpink';
-    browseButton.style.color = 'black';
+    browseButton.style.color = '#eee';
     mainHeading.style.color = 'hotpink';
     ResizeButton.classList.add('demo');
     modeToggle.classList.remove('fa-moon');
@@ -88,7 +91,7 @@ const disableDarkMode = () => {
     browseButton.style.backgroundColor = '#800C49';
     browseButton.style.color = 'white';
     mainHeading.style.color = '#800C49';
-    ResizeButton.style.backgroundColor = '#333';
+    ResizeButton.classList.remove('demo');
     modeToggle.classList.remove('fa-sun');
     modeToggle.classList.add('fa-moon');
 }

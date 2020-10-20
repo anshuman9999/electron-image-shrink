@@ -4,11 +4,23 @@
     overflow: hidden;
 }
 
+body {
+    transition: all 0.4s ease-in-out;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 #main-heading {
     text-align: center;
     color: #800C49;
     font-family: 'Open Sans Condensed', 'sans-serif';
-    margin: 30px 0;
 }
 
 #input-path-para {
@@ -46,25 +58,25 @@
 }
 
 #input-form-div {
-    width: 100vw;
-    height: 50vh;
+    width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 #browse-button {
     width: 320px;
     height: 40px;
-    margin-top: 10px;
+    margin-top: 30px;
     color: white;
     background-color: #800C49;
     border-radius: 5px;
     font-size: 1.1rem;
     font-family: 'Open Sans', sans-serif;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 #browse-button:hover {
@@ -75,13 +87,14 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .image-icon {
-    transform: scale(1.2);
+    transform: scale(1.1);
     position: relative;
-    top: 3px;
-    margin-bottom: 8px;
+    top: 5px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
@@ -105,7 +118,7 @@
     border-radius: 2px;
 }
 
-#resize-button {
+.resize-button {
     margin-top: 40px;
     width: 320px;
     height: 40px;
@@ -116,11 +129,11 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#resize-button:disabled {
+.resize-button:disabled {
     opacity: 0.6;
 }
 
-#resize-button:hover:enabled {
+.resize-button:hover:enabled {
     cursor: pointer;
     background-color: darkslategray;
 }
@@ -159,7 +172,7 @@
 
 #toggle-mode {
     position: fixed;
-    top: 10px;
+    top: 15px;
     left: 90%;
     cursor: pointer;
 }
@@ -174,7 +187,38 @@
     color: #eee;
 }
 
+.demo:hover:enabled {
+    background-color: #91889b;
+    cursor: pointer;
+}
+
 .demo:disabled {
     opacity: 0.6;
-    color: #eee;
+}
+
+.light-spinner {
+    color: white;
+    display: none;
+}
+
+.light-spinner::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -30px;
+    margin-left: -30px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    animation: light-spinner 0.7s linear infinite;
+}
+
+@keyframes light-spinner {
+    to {
+        transform: rotate(360deg);
+    }
 }
