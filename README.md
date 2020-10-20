@@ -1,7 +1,11 @@
 # Electron app to resize images
 
-This is a desktop app built with electron that resizes images.
+This is a simple desktop app for resizing images. The app is made with [electronjs](https://www.electronjs.org/).
 Although there are countless number of sites that do this, having an offline desktop app for this purpose is much more convenient.
+
+The app has a dark mode as well, the color scheme for which has been inspired from the amazing visual studio code theme [ Laserwave ](https://marketplace.visualstudio.com/items?itemName=jaredkent.laserwave).
+
+
 
 ## Installation
 
