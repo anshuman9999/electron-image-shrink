@@ -16,6 +16,8 @@ const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
 // CHECK FOR WINDOWS: 
 
+console.log('main!');
+
 const isWin = process.platform === 'Win32' ? true : false;
 const isMac = process.platform === 'darwin' ? true : false;
 const isLinux = process.platform === 'linux' ? true : false;
